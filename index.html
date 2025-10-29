@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: white;
+      background: url('wp7147395.jpg') no-repeat center center/cover;
+      height: 100vh;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 0;
+    }
+
+    header {
+      position: absolute;
+      top: 30px;
+      left: 40px;
+      font-family: Merriweather, serif;
+    }
+
+    header h1 {
+      font-size: 32px;
+      letter-spacing: 1px;
+      line-height: 0.9;
+    }
+
+    header p {
+      font-size: 20px;
+      opacity: 0.8;
+      margin-top: 4px;
+    }
+
+    .bottom-left {
+      position: absolute;
+      bottom: 60px;
+      left: 40px;
+      max-width: 500px;
+    }
+
+    .bottom-left h2 {
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 0.9;
+      text-transform: uppercase;
+    }
+
+    .bottom-left span {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+
+    .bottom-right {
+      position: absolute;
+      bottom: 60px;
+      right: 40px;
+      font-family: Merriweather, serif;
+      max-width: 400px;
+      font-size: 15px;
+      line-height: 1.2;
+    }
+
+    .bottom-right strong {
+      display: block;
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    @media (max-width: 768px) {
+      .bottom-left h2 {
+        font-size: 36px;
+      }
+      .bottom-right {
+        font-size: 13px;
+        bottom: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>MONITEP</h1>
+    <p>PORTFOLIO</p>
+  </header>
+
+  <div class="bottom-left">
+    <h2>Creative <span>Designer</span><br>and Developer.</h2>
+  </div>
+
+  <div class="bottom-right">
+    <p>
+      The website is currently under construction. Meanwhile, Feel free to reach out to me via the information below!
+    </p>
+    <strong>Email:</strong> monitepvann@gmail.com  
+    <strong>Linkedin:</strong> linkedin.com/in/monitep-vann-8b50b1307
+    </p>
+  </div>
+
+</body>
+</html>

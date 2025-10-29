@@ -17,27 +17,53 @@
     body {
       font-family: 'Roboto', sans-serif;
       color: white;
-      background: url('wp7147395.jpg') no-repeat center center/cover;
-      height: 100vh;
+      background: black;
+      overflow-x:hidden;
       position: relative;
     }
 
-    body::before {
-      content: "";
+    .background-layer {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: -10; /* sits below everything */
+    }
+
+    .background-layer img.galaxy {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.35);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      width: 55vw; 
+      max-width: 800px;
+      transition: transform 0.1s ease-out;
       z-index: 0;
+      opacity: 0.9;
+      filter: brightness(1);
+    }
+
+    .background-layer.vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 30%, black 100%);
+      pointer-events: none;
+      z-index: 1;
     }
 
     header {
-      position: absolute;
-      top: 30px;
-      left: 40px;
-      font-family: Merriweather, serif;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 30px 40px;
+      font-family: merriweather, serif;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 3;
+      transition: top 0.4s ease;
+    }
+
+    header.hidden {
+      top: -100px;
     }
 
     header h1 {
@@ -52,42 +78,142 @@
       margin-top: 4px;
     }
 
-    .bottom-left {
-      position: absolute;
-      bottom: 60px;
-      left: 40px;
-      max-width: 500px;
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 40px 80px;
+      position: relative;
+      z-index: 2;
     }
 
-    .bottom-left h2 {
+    .hero h2 {
       font-size: 56px;
       font-weight: 900;
-      line-height: 0.9;
+      line-height: 1.1;
       text-transform: uppercase;
     }
 
-    .bottom-left span {
+    .hero span {
       font-family: 'Playfair Display', serif;
       font-weight: 600;
     }
 
-    .bottom-right {
-      position: absolute;
-      bottom: 60px;
-      right: 40px;
-      font-family: Merriweather, serif;
-      max-width: 400px;
-      font-size: 15px;
-      line-height: 1.2;
+    section.projects {
+      background: black;
+      padding: 120px 5%;
+      z-index: 2;
+      position: relative;
     }
 
-    .bottom-right strong {
-      display: block;
-      margin-top: 10px;
+    .project {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 120px;
+      flex-wrap: wrap;
+      font-family: merriweather, serif;
+    }
+    
+    .projects-heading {
+      font-family: merriweather, serif;
+      font-size: 36px;
+      color: rgb(214, 214, 214);
+      text-align: left;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .projects .project:nth-of-type(even) {
+      flex-direction: row-reverse;
+    }
+
+    .project img {
+      width: 45%;
+      border-radius: 16px;
+      object-fit: cover;
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+    }
+
+    .project-text {
+      width: 45%;
       font-size: 18px;
+      line-height: 1.4;
+      color: #ddd;
     }
 
+    .project-text h3 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: white;
+    }
+
+    footer {
+      background: rgb(200, 200, 200);
+      color: black;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      z-index: 20;
+      position: relative;
+      font-family: merriweather, serif;
+      font-weight: 600;
+    }
+
+
+    /* --- Responsive for Mobile --- */
     @media (max-width: 768px) {
+      .hero h2 {
+        font-size: 36px;
+      }
+
+      .project {
+        flex-direction: column !important;
+        text-align: center;
+      }
+
+      .project img, .project-text {
+        width: 100%;
+      }
+
+      .project img {
+        margin-bottom: 20px;
+      }
+
+      footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        z-index: 6;
+      }
+    }
+    
+    #loader {
+      position: fixed;
+      top: -50px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 1s ease;
+    }
+
+    #loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #loader img {
+      width: 900px; 
+    
+    }  @media (max-width: 768px) {
       .bottom-left h2 {
         font-size: 36px;
       }
@@ -96,27 +222,112 @@
         bottom: 40px;
       }
     }
+
+    #loader img{
+      animation: fadeIn 2s ease forwards;
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity: 0;
+        transform: scale(1.05);
+      }
+      to{
+        opacity: 1;
+        transform: scale(1);
+    }
+  }
+    
   </style>
 </head>
 <body>
 
-  <header>
+  <div id="loader">
+    <img src="flower-intro.gif" alt="Loading animation">
+  </div>
+
+  <header id="mainHeader">
     <h1>MONITEP</h1>
     <p>PORTFOLIO</p>
   </header>
 
-  <div class="bottom-left">
-    <h2>Creative <span>Designer</span><br>and Developer.</h2>
+  <div class="background-layer">
+    <img src="galaxy-loop.gif" alt="Galaxy" class="galaxy">
+    <div class="vignette"></div>
   </div>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Designer, <br><span>Creator,</span><br>and Developer.</h2>
+  </section>
 
-  <div class="bottom-right">
-    <p>
-      The website is currently under construction. Meanwhile, Feel free to reach out to me via the information below!
-    </p>
-    <strong>Email:</strong> monitepvann@gmail.com  
-    <strong>Linkedin:</strong> linkedin.com/in/monitep-vann-8b50b1307
-    </p>
-  </div>
+  <!-- Projects Section -->
+  <section class="projects">
+    
+    <h2 class="projects-heading">Selected Projects</h2>
 
+    <div class="project">
+      <img src="pingpong.gif" alt="Project 1">
+      <div class="project-text">
+        <h3>Project 1</h3>
+        <p>Coming Soon.</p>
+      </div>
+    </div>
+
+    <div class="project">
+      <img src="wavesproject.gif" alt="Project 2">
+      <div class="project-text">
+        <h3>Project 2</h3>
+        <p>Coming Soon.</p>
+      </div>
+    </div>
+
+    <div class="project">
+      <img src="moonloop.gif" alt="Project 3">
+      <div class="project-text">
+        <h3>Project 3</h3>
+        <p>Coming Soon.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div>Copyright © All rights reserved.</div>
+    <div>Email: monitepvann@gmail.com</div>
+  </footer>
+
+  <script>
+    // Wait for everything to load
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("loader");
+      setTimeout(() => {
+        loader.classList.add("hidden");
+      }, 3000); 
+    });
+
+    // Parallax effect for galaxy
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY;
+      const galaxy = document.querySelector(".galaxy");
+      galaxy.style.transform = `translate(-50%, calc(-50% + ${scrollY * 0.3}px)) scale(${1 + scrollY * 0.0003})`;
+    });
+
+    // Hide header on scroll down, show on scroll up
+    let lastScrollY = 0;
+    const header = document.getElementById("mainHeader");
+
+    window.addEventListener("scroll", () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        header.classList.add("hidden");
+      } else {
+        header.classList.remove("hidden");
+      }
+      lastScrollY = currentScrollY;
+    });
+
+  </script>
 </body>
 </html>

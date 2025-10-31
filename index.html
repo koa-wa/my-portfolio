@@ -326,6 +326,15 @@
     let lastScrollY = 0;
     const header = document.getElementById("mainHeader");
 
+    function setLoaderHeight() {
+      const loader = document.getElementById('loader');
+      loader.style.height = `${window.innerHeight}px`;
+    }
+    
+    window.addEventListener('resize', setLoaderHeight);
+    window.addEventListener('orientationchange', setLoaderHeight);
+    setLoaderHeight();
+
     window.addEventListener("scroll", () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
@@ -335,10 +344,10 @@
       }
       lastScrollY = currentScrollY;
     });
-
   </script>
 </body>
 </html>
+
 
 
 
